@@ -5,13 +5,13 @@ import {
 } from "../types/interfaces";
 import { Request, Response } from "express";
 import Clients from "../models/Clients";
-import { ObjectId } from "mongodb";
+import { ObjectID } from "mongodb";
 import { ObjectLiteral } from "typeorm";
 
 const getById = async (req: Request<IGetByIdClient>, res: Response) => {
   const { id } = req.params;
 
-  const client = await Clients.findOneBy({ _id: ObjectId(id) });
+  const client = await Clients.findOneBy({ _id: ObjectID(id) });
 
   return res.json(client);
 };
@@ -52,7 +52,7 @@ const put = async (req: Request, res: Response) => {
   const { cpf, nome, telefone, placaCarro } = req.body;
 
   const client = await Clients.update(
-    { _id: ObjectId(id) },
+    { _id: ObjectID(id) },
     {
       cpf,
       nome,
